@@ -1,0 +1,21 @@
+- if counter < 6
+  .row.new-story-option-row
+    = f.fields_for :options, dynamic: true do |of|
+      .row
+        .col-md-4.form-group
+          = of.text_field :title, placeholder: 'Título', class: "form-input story-option-input"
+        .col-md-4.form-group
+          = of.text_area :main_text, placeholder: 'Texto', class: "form-input story-option-input"
+        .row.col-md-11.col-md-offset-1.form-group
+          - if false
+            = of.fields_for :options, dynamic: true do |oof|
+              .row
+                .col-md-4.form-group
+                  = oof.text_field :title, placeholder: 'Título', class: "form-input story-option-input"
+                .col-md-4.form-group
+                  = oof.text_area :main_text, placeholder: 'Texto', class: "form-input story-option-input"
+                = oof.remove_fields_link 'Quitar Opción'
+            = of.add_fields_link :options, 'Añadir Opción'
+          = render partial: "option", locals: { f: of, counter: counter + 1 }
+        = of.remove_fields_link 'Quitar Opción'
+    = f.add_fields_link :options, 'Añadir Opción'

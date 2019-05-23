@@ -1,0 +1,24 @@
+#product-form.background
+  .container
+    .row
+      .col-md-10.col-md-offset-1
+        = form_for @story, class: "positioned", html: { id: "new_product" } do |f|
+          %h3 Nuevo cuento
+          %hr.div-bar/
+          .product-table
+            .row
+              .col-md-6.form-group
+                = f.label 'Título'
+                = f.text_field :title, placeholder: "Escriba un título", class: "form-control blue-border form-input"
+              .col-md-6.form-group
+                = f.label 'Texto'
+                = f.text_area :main_text, placeholder: "Escriba el texto inicial del cuento", class: "form-control blue-border form-input"
+            .row
+              .col-md-12.form-group
+                %span Opciones
+              #new-story-option-form-container.inputs-td
+                = render partial: "option", locals: { f: f, counter: 0 }
+
+
+
+          = f.submit 'Crear cuento', class: "btn new-product-btn"
